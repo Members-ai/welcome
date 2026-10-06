@@ -94,17 +94,18 @@
     display: inline-block;
     cursor: pointer;
     list-style: none;
-    font-size: 0.62rem;
+    font-size: 0.58rem;
     letter-spacing: 0.35em;
     text-transform: uppercase;
-    color: var(--ink);
-    border: 1px solid var(--muted);
-    border-radius: 2px;
-    padding: 0.8rem 1.3rem 0.8rem 1.65rem;
+    color: var(--muted);
+    border-bottom: 1px solid var(--rule);
+    padding: 0.3rem 0 0.4rem;
+    transition: color 0.3s ease, border-color 0.3s ease;
   }
   .five summary::after { content: " +"; letter-spacing: 0; }
   .five[open] summary::after { content: " \2212"; }
-  .five summary:hover { border-color: var(--ink); }
+  .five summary:hover, .five[open] summary { color: var(--ink); border-bottom-color: var(--muted); }
+  .five summary:focus-visible { outline: 1px solid var(--muted); outline-offset: 6px; }
   .five summary::-webkit-details-marker { display: none; }
   .five ul { list-style: none; margin-top: 2.5rem; }
   .five li { font-size: 0.8rem; line-height: 1.6; font-style: italic; }
