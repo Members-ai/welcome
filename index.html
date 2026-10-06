@@ -106,9 +106,21 @@
   .five[open] summary::after { content: " \2212"; }
   .five summary:hover { border-color: var(--ink); }
   .five summary::-webkit-details-marker { display: none; }
-  .five ul { list-style: none; margin-top: 1.25rem; }
-  .five li { padding: 0.35rem 0; }
-  .five b { color: var(--ink); font-weight: 400; }
+  .five ul { list-style: none; margin-top: 2.5rem; }
+  .five li { font-size: 0.95rem; line-height: 1.6; }
+  .five li + li { margin-top: 2.1rem; }
+  .five b {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--ink);
+    font-weight: 400;
+    font-size: 0.68rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+  }
+  .five[open] ul { animation: reveal 0.8s ease both; }
+  @keyframes reveal { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) { .five[open] ul { animation: none; } }
 </style>
 </head>
 <body>
