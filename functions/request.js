@@ -1,5 +1,5 @@
 // POST /request — receives an invitation request and emails it to the owner.
-// Needs one secret in Cloudflare Pages: RESEND_API_KEY.
+// Needs one secret in Cloudflare Pages: RESEND_API_KEY (now set).
 // Optional variable: REQUEST_TO (defaults to the address below).
 
 const DEFAULT_TO = "micha.hoard@gmail.com";
