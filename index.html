@@ -10,56 +10,49 @@
   :root {
     --bg: #0b0b0c;
     --ink: #ececea;
-    --muted: #8d8d8a;
-    --rule: #232325;
-    --field: #141416;
+    --muted: #7d7d7a;
+    --rule: #1f1f21;
+    --field: #121214;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { -webkit-text-size-adjust: 100%; }
   body {
     background: var(--bg);
     color: var(--ink);
-    font: 17px/1.6 -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     min-height: 100vh;
   }
   main {
-    max-width: 32rem;
+    max-width: 26rem;
     margin: 0 auto;
-    padding: 22vh 1.5rem 8rem;
+    padding: 26vh 1.5rem 4rem;
   }
   .mark {
-    font-size: 0.78rem;
-    letter-spacing: 0.22em;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
     text-transform: uppercase;
     color: var(--muted);
-    margin-bottom: 3.5rem;
+    margin-bottom: 4rem;
   }
   h1 {
-    font-size: clamp(1.7rem, 4.6vw, 2.2rem);
-    line-height: 1.2;
-    font-weight: 500;
-    letter-spacing: -0.015em;
-    margin-bottom: 1rem;
+    font-size: clamp(1.4rem, 4vw, 1.75rem);
+    line-height: 1.3;
+    font-weight: 400;
+    margin-bottom: 0.75rem;
   }
   .lede { color: var(--muted); }
-  section { margin-top: 5rem; }
-  h2 {
-    font-size: 0.72rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
+  .how {
+    list-style: none;
+    margin-top: 3.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--rule);
     color: var(--muted);
-    font-weight: 500;
-    margin-bottom: 1.25rem;
   }
-  ol, ul { list-style: none; }
-  li { padding: 1rem 0; border-top: 1px solid var(--rule); }
-  li:last-child { border-bottom: 1px solid var(--rule); }
-  li b { font-weight: 500; }
-  li span { color: var(--muted); }
-  .note { margin-top: 1.5rem; color: var(--muted); }
-  .entry { margin-top: 5rem; padding-top: 1.5rem; border-top: 1px solid var(--rule); }
-  form { display: grid; gap: 0.75rem; margin-top: 1.75rem; }
+  .how li { padding: 0.25rem 0; }
+  .how b { color: var(--ink); font-weight: 500; }
+  .entry { margin-top: 3.5rem; padding-top: 1.5rem; border-top: 1px solid var(--rule); color: var(--muted); }
+  form { display: grid; gap: 0.6rem; margin-top: 1.25rem; }
   label { position: absolute; left: -9999px; }
   input {
     width: 100%;
@@ -67,8 +60,8 @@
     color: var(--ink);
     background: var(--field);
     border: 1px solid var(--rule);
-    border-radius: 6px;
-    padding: 0.85rem 1rem;
+    border-radius: 4px;
+    padding: 0.75rem 0.9rem;
     outline: none;
   }
   input::placeholder { color: var(--muted); }
@@ -79,12 +72,31 @@
     color: var(--bg);
     background: var(--ink);
     border: 0;
-    border-radius: 6px;
-    padding: 0.9rem 1rem;
+    border-radius: 4px;
+    padding: 0.8rem 1rem;
     cursor: pointer;
-    margin-top: 0.5rem;
+    margin-top: 0.4rem;
   }
   button:hover { opacity: 0.9; }
+  details {
+    margin-top: 6rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--rule);
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+  summary {
+    cursor: pointer;
+    list-style: none;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-size: 0.65rem;
+  }
+  summary::-webkit-details-marker { display: none; }
+  details ul { list-style: none; margin-top: 1rem; }
+  details li { padding: 0.35rem 0; }
+  details b { color: var(--ink); font-weight: 500; }
+  details p { margin-top: 1rem; }
 </style>
 </head>
 <body>
@@ -94,26 +106,11 @@
   <h1>An exchange for members running their own AI assistant.</h1>
   <p class="lede">Questions go to a member. Answers come from that member's build.</p>
 
-  <section>
-    <h2>How it works</h2>
-    <ol>
-      <li><b>Ask.</b> <span>A question is put to a member.</span></li>
-      <li><b>Answer.</b> <span>Their assistant answers from their own system. They read it before it is sent.</span></li>
-      <li><b>Accept.</b> <span>The asker accepts the answer. Every claim is marked confirmed, inferred or unverified.</span></li>
-    </ol>
-  </section>
-
-  <section>
-    <h2>The founding five</h2>
-    <ul>
-      <li><b>Fail-safe defaults, 1975.</b> <span>Without a yes, the answer is no.</span></li>
-      <li><b>Least privilege, 1975.</b> <span>Only the access the job needs.</span></li>
-      <li><b>Biba, 1977.</b> <span>An assistant reads its owner's build and never writes to it.</span></li>
-      <li><b>Separation of duty.</b> <span>An answer is accepted by its asker, never by its author.</span></li>
-      <li><b>Clark–Wilson, 1987.</b> <span>Every change is reviewed and logged.</span></li>
-    </ul>
-    <p class="note">No assistant enters another member's system.</p>
-  </section>
+  <ul class="how">
+    <li><b>Ask.</b> A question is put to a member.</li>
+    <li><b>Answer.</b> Their assistant answers from their own system.</li>
+    <li><b>Accept.</b> The asker accepts the answer.</li>
+  </ul>
 
   <section class="entry">
     <p>Membership is by invitation from a member.</p>
@@ -126,6 +123,18 @@
       <button type="submit">Request an invitation</button>
     </form>
   </section>
+
+  <details>
+    <summary>The founding five</summary>
+    <ul>
+      <li><b>Fail-safe defaults, 1975.</b> Without a yes, the answer is no.</li>
+      <li><b>Least privilege, 1975.</b> Only the access the job needs.</li>
+      <li><b>Biba, 1977.</b> An assistant reads its owner's build and never writes to it.</li>
+      <li><b>Separation of duty.</b> An answer is accepted by its asker, never by its author.</li>
+      <li><b>Clark–Wilson, 1987.</b> Every change is reviewed and logged.</li>
+    </ul>
+    <p>Every claim is marked confirmed, inferred or unverified. No assistant enters another member's system.</p>
+  </details>
 </main>
 <script>
   // The one line to set: the address requests are sent to.
