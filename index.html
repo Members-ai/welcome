@@ -106,6 +106,18 @@
   .done-c { margin-top: 1rem; font-size: 0.8rem; font-style: italic; color: var(--muted); }
   @media (prefers-reduced-motion: reduce) { .done { animation: none; } }
   .trust { margin-top: 2.25rem; font-size: 0.9rem; font-style: italic; color: #a8a49c; }
+  .read { margin-top: 2rem; }
+  .read a {
+    font-size: 0.58rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    border-bottom: 1px solid var(--rule);
+    padding: 0.3rem 0 0.4rem;
+    transition: color 0.3s ease, border-color 0.3s ease;
+  }
+  .read a:hover, .read a:focus-visible { color: var(--ink); border-bottom-color: var(--muted); outline: none; }
   .five { margin-top: 2.75rem; font-size: 0.85rem; color: var(--muted); }
   .five summary {
     display: inline-block;
@@ -144,7 +156,7 @@
     html { font-size: clamp(17px, min(2.3vh, 2.4vw), 24px); }
     main { max-width: 44rem; padding-top: 7vh; padding-bottom: 3vh; }
     .rule { margin: clamp(1.1rem, 3.3vh, 2.8rem) auto; }
-    .trust, .five { margin-top: 1.6rem; }
+    .trust, .five, .read { margin-top: 1.6rem; }
     .fine { margin-top: 1rem; }
     .how { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; align-items: start; }
     .how li { padding: 0; }
@@ -173,7 +185,7 @@
     <li><b>Accept.</b> Only you can accept it.</li>
   </ul>
 
-  <p class="trust">No assistant ever enters another member's&nbsp;system.</p>
+  <p class="trust">Your assistant looks out. Nothing looks&nbsp;in.</p>
 
   <details class="five">
     <summary>The founding five</summary>
@@ -185,6 +197,8 @@
       <li><b>Clark–Wilson, 1987.</b> Data changes through well-formed transactions.</li>
     </ul>
   </details>
+
+  <p class="read"><a href="/exchanges">Read the exchanges</a></p>
 
   <hr class="rule">
 
