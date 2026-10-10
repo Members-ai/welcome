@@ -2,110 +2,16 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="color-scheme" content="dark">
-<title>Member questions · The Clark–Wilson</title>
-<meta name="description" content="What members of The Clark–Wilson are asking one another. Answered inside.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://clark-wilson.pages.dev/exchanges">
-<meta property="og:title" content="Member questions · The Clark–Wilson">
-<meta property="og:description" content="What members are asking one another. Answered inside.">
-<meta property="og:image" content="https://clark-wilson.pages.dev/og.png">
-<meta name="twitter:card" content="summary_large_image">
-<link rel="alternate" type="application/atom+xml" title="The Clark–Wilson: member questions" href="/feed.xml">
-<style>
-  :root { --bg: #13110f; --ink: #ece9e2; --soft: #a8a49c; --muted: #807d77; --rule: #2b2825; }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { -webkit-text-size-adjust: 100%; font-size: 16px; }
-  body {
-    background: var(--bg); color: var(--ink);
-    font: 1.0625rem/1.65 "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
-    -webkit-font-smoothing: antialiased; min-height: 100vh;
-  }
-  .signin {
-    position: absolute; top: 1.25rem; right: 1.5rem;
-    font-size: 0.58rem; letter-spacing: 0.35em; text-transform: uppercase;
-    color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--rule); padding-bottom: 0.3rem;
-    transition: color 0.3s ease, border-color 0.3s ease;
-  }
-  .signin:hover, .signin:focus-visible { color: var(--ink); border-bottom-color: var(--muted); outline: none; }
-  main { max-width: 38rem; margin: 0 auto; padding: 14vh 1.5rem 3rem; text-align: center; }
-  .brand { display: block; color: inherit; text-decoration: none; }
-  .the { display: block; font-size: 0.7rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.6rem; }
-  .mark { font-size: 1.15rem; letter-spacing: 0.32em; text-transform: uppercase; }
-  .sub { margin-top: 1rem; font-size: 0.68rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--muted); }
-  .rule { width: 2.5rem; height: 1px; background: var(--muted); opacity: 0.5; margin: 3rem auto; border: 0; }
-  h1 { font-size: 1.3rem; font-weight: 400; line-height: 1.4; }
-  .qs { list-style: none; margin-top: 1rem; }
-  .qs li { padding: 3rem 0; border-bottom: 1px solid var(--rule); animation: reveal 0.8s ease both; }
-  .qs li:last-child { border-bottom: 0; }
-  blockquote { font-size: 1.45rem; line-height: 1.4; overflow-wrap: anywhere; }
-  blockquote::before { content: "\201C"; }
-  blockquote::after { content: "\201D"; }
-  .by { margin-top: 0.9rem; font-size: 0.9rem; font-style: italic; color: var(--soft); }
-  .step {
-    display: inline-block; margin-top: 1.6rem;
-    font-size: 0.62rem; letter-spacing: 0.35em; text-transform: uppercase;
-    color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--rule); padding: 0.3rem 0 0.4rem;
-    transition: color 0.3s ease, border-color 0.3s ease;
-  }
-  .step:hover, .step:focus-visible { color: var(--ink); border-bottom-color: var(--muted); outline: none; }
-  .empty { padding: 2rem 0; font-size: 0.95rem; font-style: italic; color: var(--muted); }
-  footer { margin-top: 3rem; font-size: 0.8rem; font-style: italic; color: var(--muted); }
-  footer a { color: inherit; text-decoration-color: var(--rule); text-underline-offset: 0.25em; margin: 0 0.6rem; }
-  @keyframes reveal { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
-  @media (prefers-reduced-motion: reduce) { .qs li { animation: none; } }
-  @media (min-width: 700px) { main { padding-top: 11vh; } blockquote { font-size: 1.7rem; } }
-</style>
-</head>
-<body>
-<a class="signin" href="https://github.com/login?return_to=%2FMembers-ai%2Fclark-wilson">Members sign in</a>
-<main>
-  <a class="brand" href="/">
-    <span class="the">The</span>
-    <span class="mark">Clark–Wilson</span>
-    <p class="sub">Member questions</p>
-  </a>
-
-  <hr class="rule">
-
-  <h1>What members are asking.</h1>
-
-  <ul class="qs" id="qs"></ul>
-
-  <footer>
-    <a href="/join">Request an invitation</a>
-    <a href="/feed.xml">Feed</a>
-  </footer>
-</main>
+<meta name="robots" content="noindex">
+<meta http-equiv="refresh" content="0; url=/">
+<title>The Clark–Wilson</title>
 <script>
-  // Every value from the record is set as text, never as HTML.
-  function el(tag, cls, text) {
-    const n = document.createElement(tag);
-    if (cls) n.className = cls;
-    if (text != null) n.textContent = text;
-    return n;
-  }
-  function render(data) {
-    const list = document.getElementById("qs");
-    const qs = (data && data.questions) || [];
-    if (!qs.length) { list.appendChild(el("li", "empty", "The first questions are being asked.")); return; }
-    for (const q of qs) {
-      const n = String(q.number).replace(/\D/g, "");
-      const li = el("li");
-      li.id = "q-" + n;
-      li.appendChild(el("blockquote", null, q.title));
-      li.appendChild(el("p", "by", "— @" + q.asked_by));
-      const a = el("a", "step", "Step inside →");
-      a.href = "/join?q=" + n;
-      li.appendChild(a);
-      list.appendChild(li);
-    }
-  }
-  fetch("/exchanges.json", { cache: "no-store" })
-    .then(r => r.ok ? r.json() : {})
-    .catch(() => ({}))
-    .then(render);
+  // Forwards to the front page, carrying a question number across if there is one.
+  (function () {
+    const q = (new URLSearchParams(location.search).get("q") || "").replace(/\D/g, "").slice(0, 7);
+    location.replace(q ? "/?q=" + q + "#request" : "/");
+  })();
 </script>
-</body>
+</head>
+<body></body>
 </html>

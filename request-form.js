@@ -1,4 +1,4 @@
-// The invitation request form, shared by the front page and /join.
+// The invitation request form on the front page.
 // Requests are posted to /request, which emails the host. If that service is
 // not available, the form falls back to opening an email draft instead.
 (function () {
@@ -9,9 +9,11 @@
   const done = document.getElementById("done");
   const button = form.querySelector("button");
   const label = button.textContent;
-  const q = (new URLSearchParams(location.search).get("q") || "").replace(/\D/g, "").slice(0, 7);
+  // The question a visitor came from: set by "Step inside", or carried in the address.
+  const question = () => (form.dataset.q || new URLSearchParams(location.search).get("q") || "").replace(/\D/g, "").slice(0, 7);
 
   function draft(user) {
+    const q = question();
     const subject = "Invitation request: " + user;
     const body = "GitHub username: " + user + "\n" + (q ? "Came from question No. " + q + "\n" : "");
     location.href = "mailto:" + REQUEST_ADDRESS +
@@ -30,7 +32,7 @@
       res = await fetch("/request", {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify({ user: user, q: q, website: form.website.value }),
+        body: JSON.stringify({ user: user, q: question(), website: form.website.value }),
       });
     } catch (err) { /* network failure: handled below */ }
 

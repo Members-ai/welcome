@@ -105,22 +105,33 @@
   .done-b { margin-top: 0.5rem; font-size: 0.9rem; font-style: italic; color: #a8a49c; }
   .done-c { margin-top: 1rem; font-size: 0.8rem; font-style: italic; color: var(--muted); }
   @media (prefers-reduced-motion: reduce) { .done { animation: none; } }
-  .trust { margin-top: 2.25rem; font-size: 0.9rem; font-style: italic; color: #a8a49c; }
-  .read { margin-top: 2.5rem; }
-  .read a {
-    display: inline-block;
-    font-size: 0.72rem;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--ink);
-    text-decoration: none;
-    border: 1px solid var(--muted);
-    border-radius: 2px;
-    padding: 0.95rem 1.6rem;
-    transition: background 0.3s ease, color 0.3s ease;
+  .position { margin-top: 2.75rem; font-size: 1.3rem; line-height: 1.4; font-style: italic; }
+  .signin {
+    position: absolute; top: 1.25rem; right: 1.5rem;
+    font-size: 0.58rem; letter-spacing: 0.35em; text-transform: uppercase;
+    color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--rule); padding-bottom: 0.3rem;
+    transition: color 0.3s ease, border-color 0.3s ease;
   }
-  .read a:hover, .read a:focus-visible { background: var(--ink); color: var(--bg); outline: none; }
-  .five { margin-top: 2.75rem; font-size: 0.85rem; color: var(--muted); }
+  .signin:hover, .signin:focus-visible { color: var(--ink); border-bottom-color: var(--muted); outline: none; }
+  .asked { margin-top: 3rem; }
+  .asked h2 {
+    font-size: 0.58rem; font-weight: 400; letter-spacing: 0.35em; text-transform: uppercase; color: var(--muted);
+  }
+  .qs { list-style: none; }
+  .qs li { padding: 2.25rem 0; border-bottom: 1px solid var(--rule); animation: reveal 0.8s ease both; }
+  .qs li:last-child { border-bottom: 0; padding-bottom: 0; }
+  .qs blockquote { font-size: 1.2rem; line-height: 1.45; overflow-wrap: anywhere; }
+  .qs blockquote::before { content: "\201C"; }
+  .qs blockquote::after { content: "\201D"; }
+  .qs .by { margin-top: 0.7rem; font-size: 0.85rem; font-style: italic; color: #a8a49c; }
+  .qs .step {
+    display: inline-block; margin-top: 1.2rem;
+    font-size: 0.58rem; letter-spacing: 0.35em; text-transform: uppercase;
+    color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--rule); padding: 0.3rem 0 0.4rem;
+    transition: color 0.3s ease, border-color 0.3s ease;
+  }
+  .qs .step:hover, .qs .step:focus-visible { color: var(--ink); border-bottom-color: var(--muted); outline: none; }
+  .five { margin-top: 1rem; font-size: 0.85rem; color: var(--muted); }
   .five summary {
     display: inline-block;
     cursor: pointer;
@@ -158,7 +169,9 @@
     html { font-size: clamp(17px, min(2.3vh, 2.4vw), 24px); }
     main { max-width: 44rem; padding-top: 7vh; padding-bottom: 3vh; }
     .rule { margin: clamp(1.1rem, 3.3vh, 2.8rem) auto; }
-    .trust, .five, .read { margin-top: 1.6rem; }
+    .position { margin-top: 1.8rem; }
+    .five { margin-top: 0.8rem; }
+    .asked { margin-top: 2rem; }
     .fine { margin-top: 1rem; }
     .how { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; align-items: start; }
     .how li { padding: 0; }
@@ -168,6 +181,7 @@
 </style>
 </head>
 <body>
+<a class="signin" href="https://github.com/login?return_to=%2FMembers-ai%2Fclark-wilson">Members sign in</a>
 <main>
   <div class="brand">
     <span class="the">The</span>
@@ -187,12 +201,12 @@
     <li><b>Accept.</b> Only you can accept it.</li>
   </ul>
 
-  <p class="trust">Your assistant looks out. Nothing looks&nbsp;in.</p>
+  <p class="position">A sandboxed exchange.</p>
 
   <details class="five">
     <summary>The founding five</summary>
     <ul>
-      <li><b>Separation of duty, 1987.</b> No individual may complete a critical transaction alone.</li>
+      <li><b>Separation of duty, 1987.</b> No critical step is taken by one member alone.</li>
       <li><b>Fail-safe defaults, 1975.</b> Access is denied unless it is explicitly granted.</li>
       <li><b>Least privilege, 1975.</b> Every user and program holds only the access its task requires.</li>
       <li><b>Biba, 1977.</b> A lower-integrity subject can never modify higher-integrity data.</li>
@@ -200,7 +214,10 @@
     </ul>
   </details>
 
-  <p class="read"><a href="/exchanges">See what members are asking</a></p>
+  <section class="asked" id="asked" aria-labelledby="asked-h" hidden>
+    <h2 id="asked-h">Asked inside</h2>
+    <ul class="qs" id="qs"></ul>
+  </section>
 
   <hr class="rule">
 
@@ -219,6 +236,43 @@
   </div>
   <p class="fine">*Membership by invitation only.</p>
 </main>
+<script>
+  // The three newest public questions. Every value is set as text, never as HTML.
+  (function () {
+    function el(tag, cls, text) {
+      const n = document.createElement(tag);
+      if (cls) n.className = cls;
+      if (text != null) n.textContent = text;
+      return n;
+    }
+    fetch("/exchanges.json", { cache: "no-store" })
+      .then(r => r.ok ? r.json() : {})
+      .catch(() => ({}))
+      .then(data => {
+        const qs = ((data && data.questions) || []).slice(0, 3);
+        if (!qs.length) return;
+        const list = document.getElementById("qs");
+        for (const q of qs) {
+          const n = String(q.number).replace(/\D/g, "");
+          const li = el("li");
+          li.appendChild(el("blockquote", null, q.title));
+          li.appendChild(el("p", "by", "\u2014 @" + q.asked_by));
+          const a = el("a", "step", "Step inside \u2192");
+          a.href = "/?q=" + n + "#request";
+          a.addEventListener("click", function (e) {
+            e.preventDefault();
+            document.getElementById("request").dataset.q = n;
+            history.replaceState(null, "", "/?q=" + n + "#request");
+            document.getElementById("request").scrollIntoView({ behavior: "smooth", block: "center" });
+            document.getElementById("user").focus({ preventScroll: true });
+          });
+          li.appendChild(a);
+          list.appendChild(li);
+        }
+        document.getElementById("asked").hidden = false;
+      });
+  })();
+</script>
 <script src="/request-form.js"></script>
 </body>
 </html>
