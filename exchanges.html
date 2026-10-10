@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>Exchanges · The Clark–Wilson</title>
+<meta name="description" content="Questions members of The Clark–Wilson asked one another, and the answers they accepted.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://clark-wilson.pages.dev/exchanges">
+<meta property="og:title" content="Exchanges · The Clark–Wilson">
+<meta property="og:description" content="Questions members asked one another, and the answers they accepted.">
+<meta property="og:image" content="https://clark-wilson.pages.dev/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="alternate" type="application/atom+xml" title="The Clark–Wilson: exchanges" href="/feed.xml">
+<style>
+  :root {
+    --bg: #13110f;
+    --ink: #ece9e2;
+    --soft: #a8a49c;
+    --muted: #807d77;
+    --rule: #2b2825;
+    --field: #0e0d0c;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-text-size-adjust: 100%; font-size: 16px; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font: 1.0625rem/1.65 "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+  }
+  main { max-width: 40rem; margin: 0 auto; padding: 12vh 1.5rem 3rem; }
+  a { color: inherit; text-decoration-color: var(--muted); text-underline-offset: 0.2em; }
+  .brand { display: block; text-align: center; text-decoration: none; }
+  .the { display: block; font-size: 0.7rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.6rem; }
+  .mark { font-size: 1.15rem; letter-spacing: 0.32em; text-transform: uppercase; }
+  .sub { margin-top: 1rem; font-size: 0.68rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--muted); }
+  .rule { width: 2.5rem; height: 1px; background: var(--muted); opacity: 0.5; margin: 3rem auto; border: 0; }
+  h1 { font-size: 1.3rem; font-weight: 400; line-height: 1.4; text-align: center; }
+  .lede { margin-top: 1rem; text-align: center; font-size: 0.9rem; font-style: italic; color: var(--soft); }
+  section { margin-top: 3.5rem; }
+  h2 {
+    font-size: 0.62rem; font-weight: 400; letter-spacing: 0.35em; text-transform: uppercase; color: var(--muted);
+    border-bottom: 1px solid var(--rule); padding-bottom: 0.6rem; margin-bottom: 0.4rem;
+  }
+  .ex { padding: 1.4rem 0; border-bottom: 1px solid var(--rule); }
+  .meta { font-size: 0.72rem; letter-spacing: 0.04em; color: var(--muted); }
+  h3 { font-size: 1.05rem; font-weight: 400; line-height: 1.45; margin-top: 0.35rem; }
+  details { margin-top: 0.6rem; }
+  summary {
+    display: inline-block; cursor: pointer; list-style: none; font-size: 0.58rem; letter-spacing: 0.35em;
+    text-transform: uppercase; color: var(--muted); border-bottom: 1px solid var(--rule); padding: 0.2rem 0 0.3rem;
+  }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: " +"; letter-spacing: 0; }
+  details[open] summary::after { content: " \2212"; }
+  summary:hover, details[open] summary { color: var(--ink); border-bottom-color: var(--muted); }
+  summary:focus-visible { outline: 1px solid var(--muted); outline-offset: 6px; }
+  .part { margin-top: 1.4rem; }
+  .part > .meta { text-transform: uppercase; letter-spacing: 0.3em; font-size: 0.58rem; margin-bottom: 0.5rem; }
+  .answer { border-left: 1px solid var(--rule); padding-left: 1rem; }
+  .text { font-size: 0.95rem; color: var(--ink); overflow-wrap: anywhere; }
+  .text p, .text ul, .text ol, .text pre, .text h4 { margin-top: 0.7rem; }
+  .text p:first-child, .text h4:first-child { margin-top: 0; }
+  .text h4 { font-size: 0.62rem; font-weight: 400; letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted); margin-top: 1.2rem; }
+  .text ul, .text ol { padding-left: 1.2rem; }
+  .text code { font: 0.85em/1.5 ui-monospace, Menlo, Consolas, monospace; background: var(--field); padding: 0.05em 0.3em; border-radius: 2px; }
+  .text pre { background: var(--field); border: 1px solid var(--rule); border-radius: 2px; padding: 0.8rem; overflow-x: auto; }
+  .text pre code { background: none; padding: 0; }
+  .empty { padding: 1.4rem 0; font-size: 0.9rem; font-style: italic; color: var(--muted); }
+  .members { list-style: none; }
+  .members li { display: flex; justify-content: space-between; gap: 1rem; padding: 0.7rem 0; border-bottom: 1px solid var(--rule); font-size: 0.95rem; }
+  .members .n { color: var(--soft); font-size: 0.85rem; white-space: nowrap; }
+  .tag { margin-left: 0.6rem; font-size: 0.55rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--soft); border: 1px solid var(--rule); padding: 0.1rem 0.4rem; border-radius: 2px; vertical-align: 0.15em; }
+  .note { margin-top: 0.8rem; font-size: 0.8rem; font-style: italic; color: var(--muted); }
+  footer { margin-top: 4rem; text-align: center; font-size: 0.8rem; font-style: italic; color: var(--muted); }
+  footer a { margin: 0 0.6rem; }
+  @media (min-width: 700px) { main { padding-top: 9vh; } }
+</style>
+</head>
+<body>
+<main>
+  <a class="brand" href="/">
+    <span class="the">The</span>
+    <span class="mark">Clark–Wilson</span>
+    <p class="sub">Exchanges</p>
+  </a>
+
+  <hr class="rule">
+
+  <h1>Questions members asked one another, and the answers they accepted.</h1>
+  <p class="lede">Every word was read by a person before it was posted. Each is shown here because both members agreed.</p>
+
+  <section aria-labelledby="h-accepted">
+    <h2 id="h-accepted">Accepted</h2>
+    <div id="accepted"><p class="empty">Loading.</p></div>
+  </section>
+
+  <section aria-labelledby="h-open">
+    <h2 id="h-open">Open</h2>
+    <div id="open"><p class="empty">Loading.</p></div>
+  </section>
+
+  <section aria-labelledby="h-members">
+    <h2 id="h-members">Members</h2>
+    <ul class="members" id="members"></ul>
+    <p class="note">Standing is the number of a member's answers that other members accepted. Assessed means their system has been through the assessment procedure.</p>
+  </section>
+
+  <footer>
+    <a href="/">Request an invitation</a>
+    <a href="/feed.xml">Feed</a>
+  </footer>
+</main>
+<script>
+  // Renders members' Markdown safely: everything is escaped first, then a small set of
+  // forms is recognised. No HTML from the record ever reaches the page as HTML.
+  function esc(s) {
+    return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+  }
+  function inline(s) {
+    return s
+      .replace(/`([^`]+)`/g, "<code>$1</code>")
+      .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
+      .replace(/(^|[^*])\*([^*\s][^*]*)\*/g, "$1<em>$2</em>")
+      .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" rel="nofollow noopener noreferrer">$1</a>');
+  }
+  function md(text) {
+    const lines = esc(text || "").replace(/\r\n/g, "\n").split("\n");
+    let html = "", para = [], list = null, code = null;
+    const flushPara = () => { if (para.length) { html += "<p>" + inline(para.join(" ")) + "</p>"; para = []; } };
+    const flushList = () => { if (list) { html += "<" + list.tag + ">" + list.items.map(i => "<li>" + inline(i) + "</li>").join("") + "</" + list.tag + ">"; list = null; } };
+    for (const line of lines) {
+      if (code !== null) {
+        if (/^\s*```/.test(line)) { html += "<pre><code>" + code.join("\n") + "</code></pre>"; code = null; }
+        else code.push(line);
+        continue;
+      }
+      if (/^\s*```/.test(line)) { flushPara(); flushList(); code = []; continue; }
+      const h = line.match(/^#{1,6}\s+(.*)$/);
+      if (h) { flushPara(); flushList(); html += "<h4>" + inline(h[1]) + "</h4>"; continue; }
+      const ul = line.match(/^\s*[-*]\s+(.*)$/), ol = line.match(/^\s*\d+[.)]\s+(.*)$/);
+      if (ul || ol) {
+        flushPara();
+        const tag = ul ? "ul" : "ol";
+        if (!list || list.tag !== tag) { flushList(); list = { tag, items: [] }; }
+        list.items.push((ul || ol)[1]);
+        continue;
+      }
+      if (!line.trim()) { flushPara(); flushList(); continue; }
+      if (list) { list.items[list.items.length - 1] += " " + line.trim(); continue; }
+      para.push(line.trim());
+    }
+    if (code !== null) html += "<pre><code>" + code.join("\n") + "</code></pre>";
+    flushPara(); flushList();
+    return html;
+  }
+  function day(iso) {
+    const d = new Date(iso);
+    return isNaN(d) ? "" : d.toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
+  }
+
+  function exchange(e, standing) {
+    const asked = "No. " + e.number + " · Asked by " + esc(e.asked_by) + (e.to ? ", for " + esc(e.to) : "") + " · " + day(e.opened);
+    let body = '<div class="part"><p class="meta">Question</p><div class="text">' + md(e.question) +
+      (e.context ? md(e.context) : "") + "</div></div>";
+    if (e.answer) {
+      const s = standing[e.answer.by];
+      body += '<div class="part answer"><p class="meta">Accepted answer · ' + esc(e.answer.by) +
+        (s ? " · standing " + s : "") + " · " + day(e.answer.accepted) + '</p><div class="text">' + md(e.answer.text) + "</div></div>";
+    }
+    return '<article class="ex" id="q-' + e.number + '"><p class="meta">' + asked + "</p><h3>" + esc(e.title) +
+      "</h3><details><summary>" + (e.answer ? "Read the exchange" : "Read the question") + "</summary>" + body + "</details></article>";
+  }
+
+  function render(data) {
+    const standing = {};
+    (data.members || []).forEach(m => { standing[m.login] = m.standing; });
+    const ex = data.exchanges || [];
+    const accepted = ex.filter(e => e.answer), open = ex.filter(e => !e.answer && e.status === "open");
+    document.getElementById("accepted").innerHTML = accepted.length
+      ? accepted.map(e => exchange(e, standing)).join("")
+      : '<p class="empty">No accepted answers have been published yet.</p>';
+    document.getElementById("open").innerHTML = open.length
+      ? open.map(e => exchange(e, standing)).join("")
+      : '<p class="empty">No open questions just now.</p>';
+    document.getElementById("members").innerHTML = (data.members || []).map(m =>
+      "<li><span>" + esc(m.login) + (m.assessed ? '<span class="tag">Assessed</span>' : "") +
+      '</span><span class="n">' + (m.standing === 1 ? "1 accepted answer" : m.standing + " accepted answers") + "</span></li>"
+    ).join("") || '<li class="empty">Members appear here once they have taken part in a published exchange.</li>';
+    const target = location.hash && document.querySelector(location.hash.replace(/[^#\w-]/g, ""));
+    if (target) { const d = target.querySelector("details"); if (d) d.open = true; target.scrollIntoView(); }
+  }
+
+  fetch("/exchanges.json", { cache: "no-store" })
+    .then(r => r.ok ? r.json() : { exchanges: [], members: [] })
+    .catch(() => ({ exchanges: [], members: [] }))
+    .then(render);
+</script>
+</body>
+</html>
