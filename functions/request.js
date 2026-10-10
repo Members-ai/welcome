@@ -45,6 +45,7 @@ export async function onRequestPost({ request, env }) {
     `Invitation request from ${shown}.`,
     "",
     `Profile: https://github.com/${user}`,
+    ...(/^\d{1,7}$/.test(String(data.q || "")) ? [`Came from question No. ${data.q}: https://github.com/Members-ai/clark-wilson/issues/${data.q}`] : []),
     `Invite them: https://github.com/orgs/Members-ai/people`,
     "",
     `Received ${new Date().toUTCString()}.`,
