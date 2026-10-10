@@ -106,18 +106,20 @@
   .done-c { margin-top: 1rem; font-size: 0.8rem; font-style: italic; color: var(--muted); }
   @media (prefers-reduced-motion: reduce) { .done { animation: none; } }
   .trust { margin-top: 2.25rem; font-size: 0.9rem; font-style: italic; color: #a8a49c; }
-  .read { margin-top: 2rem; }
+  .read { margin-top: 2.5rem; }
   .read a {
-    font-size: 0.58rem;
-    letter-spacing: 0.35em;
+    display: inline-block;
+    font-size: 0.72rem;
+    letter-spacing: 0.3em;
     text-transform: uppercase;
-    color: var(--muted);
+    color: var(--ink);
     text-decoration: none;
-    border-bottom: 1px solid var(--rule);
-    padding: 0.3rem 0 0.4rem;
-    transition: color 0.3s ease, border-color 0.3s ease;
+    border: 1px solid var(--muted);
+    border-radius: 2px;
+    padding: 0.95rem 1.6rem;
+    transition: background 0.3s ease, color 0.3s ease;
   }
-  .read a:hover, .read a:focus-visible { color: var(--ink); border-bottom-color: var(--muted); outline: none; }
+  .read a:hover, .read a:focus-visible { background: var(--ink); color: var(--bg); outline: none; }
   .five { margin-top: 2.75rem; font-size: 0.85rem; color: var(--muted); }
   .five summary {
     display: inline-block;
@@ -198,7 +200,7 @@
     </ul>
   </details>
 
-  <p class="read"><a href="/exchanges">Read the exchanges</a></p>
+  <p class="read"><a href="/exchanges">See what members are asking</a></p>
 
   <hr class="rule">
 
@@ -217,60 +219,6 @@
   </div>
   <p class="fine">*Membership by invitation only.</p>
 </main>
-<script>
-  // Requests are posted to /request, which emails the owner. If that service
-  // is not available, the form falls back to opening an email draft instead.
-  const REQUEST_ADDRESS = "micha.hoard@gmail.com";
-  const form = document.getElementById("request");
-  const note = document.getElementById("note");
-  const done = document.getElementById("done");
-  const button = form.querySelector("button");
-
-  function draft(user) {
-    const subject = "Invitation request: " + user;
-    const body = "GitHub username: " + user + "\n";
-    location.href = "mailto:" + REQUEST_ADDRESS +
-      "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
-  }
-
-  form.addEventListener("submit", async function (e) {
-    e.preventDefault();
-    const user = form.user.value.trim();
-    note.textContent = "";
-    button.disabled = true;
-    button.textContent = "Sending";
-
-    let res = null;
-    try {
-      res = await fetch("/request", {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({ user: user, website: form.website.value }),
-      });
-    } catch (err) { /* network failure: handled below */ }
-
-    let info = {};
-    if (res) { try { info = await res.json(); } catch (err) { /* not from the service */ } }
-
-    if (res && res.ok && info.ok) {
-      form.hidden = true;
-      done.hidden = false;
-      return;
-    }
-
-    button.disabled = false;
-    button.textContent = "Request an invitation";
-
-    if (info.error === "no_such_user") {
-      note.textContent = "That GitHub name could not be found. Kindly check it and try again.";
-    } else if (info.error === "bad_name") {
-      note.textContent = "That does not look like a GitHub username. Kindly check it and try again.";
-    } else if (info.error === "send_failed") {
-      note.textContent = "Regrets. The request could not be delivered just now. Kindly try again shortly.";
-    } else {
-      draft(user);
-    }
-  });
-</script>
+<script src="/request-form.js"></script>
 </body>
 </html>
